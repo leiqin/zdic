@@ -9,11 +9,11 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	title="&zdicopt.title;"
 	buttons="accept,cancel"
-	ondialogaccept="zdic.options.save()"
-	onload="zdic.options.load()"
+	ondialogaccept="zdicopts.dialogSave()"
+	onload="zdicopts.dialogLoad()"
 	>
 
-	<script src="chrome://zdic/content/zdic.js" />
+	<script src="chrome://zdic/content/options.js" />
 
 	<vbox align="left">
 		<checkbox id="zdicoptIsSelect" label="&zdicopt.isSelect;" />

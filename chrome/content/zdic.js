@@ -1,67 +1,83 @@
 var zdic = { 
 
-	options : {
+	init : function() {
+		zdic.log.m("init");
+		window.addEventListener("keydown", zdic.keydownHandler, true);
+	},
 
-		// 选字释义
-		enableSelect : false,
-		// 即指即译
-		enableCtrlHover : true,
-		// "","Shift","Alt"
-		ctrlHoverKey : "",
+	clickHandler : function(event) {
+	},
 
-		load : function() {
-			this.readPref();
-			this.setDialog();
-		},
+	keydownHandler : function(event) {
+		zdic.log.m("keydown event");
+		var isToTranslate = false;
 
-		save : function() {
-			this.readDialog();
-			this.setPref();
-		},
+		if (!zdicopts.isCtrlHover) return;
 
-		readPref : function() {
-			var prefs = Components.classes["@mozilla.org/preferences-service;1"]
-				.getService(Components.interfaces.nsIPrefService);
-			var myprefs = prefs.getBranch("extensions.zdic.");
+		switch (zdicopts.ctrlHoverKey) {
+			case "Shift":
+				if ((KeyEvent.DOM_VK_CONTROL == event.keyCode &&
+							event.shiftKey && !event.altKey && !event.metaKey)
+						|| (KeyEvent.DOM_VK_SHIFT == event.keyCode &&
+							event.ctrlKey && !event.altKey && !event.metaKey)) {
+					isToTranslate = true;
+				}
+				break;
+			case "Alt":
+				if ((KeyEvent.DOM_VK_CONTROL == event.keyCode &&
+							!event.shiftKey && event.altKey && !event.metaKey)
+						|| (KeyEvent.DOM_VK_ALT == event.keyCode &&
+							event.ctrlKey && !event.shiftKey && !event.metaKey)) {
+					isToTranslate = true;
+				}
+				break;
+			default:
+				if ((KeyEvent.DOM_VK_CONTROL == event.keyCode &&
+							!event.shiftKey && event.altKey && !event.metaKey)
+						|| (KeyEvent.DOM_VK_ALT == event.keyCode &&
+							event.ctrlKey && !event.shiftKey && !event.metaKey)) {
+					isToTranslate = true;
+				}
+		}
 
-			this.enableSelect = myprefs.getBoolPref("enableSelect");
-			this.enableCtrlHover = myprefs.getBoolPref("enableCtrlHover");
-			this.ctrlHoverKey = myprefs.getCharPref("ctrlHoverKey");
-		},
+		if (isToTranslate) {
+			zdic.lookup(event);
+		} else {
+			zdic.close();
+		}
+	},
 
-		setPref : function() {
-			var prefs = Components.classes["@mozilla.org/preferences-service;1"]
-				.getService(Components.interfaces.nsIPrefService);
-			var myprefs = prefs.getBranch("extensions.zdic.");
-			
-			myprefs.setBoolPref("enableSelect", this.enableSelect);
-			myprefs.setBoolPref("enableCtrlHover", this.enableCtrlHover);
-			myprefs.setCharPref("ctrlHoverKey", this.ctrlHoverKey);
-		},
+	lookup : function(event) {
+		var word = document.getSelection();
+		if (word) {
+			word = word.trim();
+		}
+		if (word) {
+			//TODO
+			zdic.log.m("lookup : " + word);
+		}
+	},
 
-		readDialog : function() {
-			this.enableSelect = document.getElementById("zdicoptIsSelect").checked;
-			this.enableCtrlHover = document.getElementById("zdicoptIsCtrlHover").checked;
-			var optCtrlHoverKey = document.getElementById("zdicoptCtrlHoverKey");
-			this.ctrlHoverKey = optCtrlHoverKey.selectedItem.value
-		},
+	close : function() {
+	},
 
-		setDialog: function() {
-			document.getElementById("zdicoptIsSelect").checked = this.enableSelect;
-			document.getElementById("zdicoptIsCtrlHover").checked = this.enableCtrlHover;
-			var optCtrlHoverKey = document.getElementById("zdicoptCtrlHoverKey");
-			switch (this.ctrlHoverKey) {
-				case "Shift":
-					optCtrlHoverKey.selectedItem = document.getElementById("zdicoptCtrlHoverShiftKey");
-					break;
-				case "Alt":
-					optCtrlHoverKey.selectedItem = document.getElementById("zdicoptCtrlHoverAltKey");
-					break;
-				default:
-					optCtrlHoverKey.selectedItem = document.getElementById("zdicoptCtrlHoverNoKey");
+	log : {
+		console : null,
+		debug : true,
+		m : function(msg) {
+			if (!this.console) {
+				this.init();
 			}
+			if (this.debug)
+				this.console.logStringMessage(msg);
 		},
-	}
-}
+		init : function() {
+			this.console = Components.classes["@mozilla.org/consoleservice;1"]
+				.getService(Components.interfaces.nsIConsoleService);
+		},
+	},
+};
+
+window.addEventListener("load", zdic.init);
 
 // vim: foldmarker={,} foldmethod=marker

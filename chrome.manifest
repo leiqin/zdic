@@ -1,4 +1,6 @@
 content zdic chrome/content/
 skin zdic classic/1.0 chrome/skin/
 
+overlay chrome://browser/content/browser.xul chrome://gd12/content/gdic.xul
+
 locale zdic zh-CN chrome/locale/zh-CN/
