@@ -15,6 +15,7 @@ var zdicopts = {
 	dialogSave : function() {
 		this.readDialog();
 		this.setPref();
+		this.notifyBrowser();
 	},
 
 	readPref : function() {
@@ -59,6 +60,17 @@ var zdicopts = {
 				optCtrlHoverKey.selectedItem = document.getElementById("zdicoptCtrlHoverNoKey");
 		}
 	},
+
+	notifyBrowser : function() {
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+			.getService(Components.interfaces.nsIWindowMediator);
+		var enumerator = wm.getEnumerator("navigator:browser");
+		while(enumerator.hasMoreElements()) {
+			var win = enumerator.getNext();
+			if (win && win.gd12)
+				win.zdicopts.readPref();
+		}
+	}
 };
 
 zdicopts.readPref();
