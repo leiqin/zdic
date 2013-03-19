@@ -141,7 +141,7 @@ var zdic = {
 
 	log : {
 		console : null,
-		debug : true,
+		debug : false,
 		m : function(msg) {
 			if (!this.console) {
 				this.init();
