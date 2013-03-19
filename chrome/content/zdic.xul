@@ -16,7 +16,6 @@
              onpopupshown="zdic.popup.on()"
              onpopuphidden="zdic.popup.off()">
 			 <html:div id="zdicdiv">
-				 <html:div id="zdictxt"/>
 				 <html:iframe id="zdiciframe"/>
 				 <html:div id="zdichelp">
 					 <html:span class="zdiclink" onclick="zdic.popup.close();gBrowser.selectedTab = gBrowser.addTab('http://www.zdic.net');">www.zdic.net</html:span>

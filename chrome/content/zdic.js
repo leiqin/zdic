@@ -80,12 +80,20 @@ var zdic = {
 		if (word) {
 			zdic.log.m("zdic.lookup : " + word);
 			zdic.popup.open(event.screenX, event.screenY+18);
-			zdictxt = document.getElementById("zdictxt");
-			zdictxt.textContent = word;
 			zdiciframe = document.getElementById("zdiciframe");
-			zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURI(word);
+			zdiciframe.src = "chrome://zdic/content/searching.html";
+			if (zdic.winTimeout) {
+				window.clearTimeout(zdic.winTimeout);
+				zdic.winTimeout = null;
+			}
+			zdic.winTimeout = window.setTimeout(function() {
+				zdic.log.m('zidc.seaching');
+				zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURI(word);
+			}, 200);
 		}
 	},
+
+	winTimeout : null,
 
 	close : function() {
 		zdic.popup.close();
