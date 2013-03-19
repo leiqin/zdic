@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://zdic/locale/zdic.dtd">
+
+<dialog id="zdicOption"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	title="&zdicopt.title;"
+	buttons="accept,cancel"
+	ondialogaccept="zdic.options.save()"
+	onload="zdic.options.load()"
+	>
+
+	<script src="chrome://zdic/content/zdic.js" />
+
+	<vbox align="left">
+		<checkbox id="zdicoptIsSelect" label="&zdicopt.isSelect;" />
+		<hbox align="center">
+			<checkbox id="zdicoptIsCtrlHover" label="&zdicopt.isCtrlHover;" />
+			<radiogroup id="zdicoptCtrlHoverKey">
+				<hbox align="center">
+					<radio id="zdicoptCtrlHoverNoKey" label="Ctrl" value="" selected="true" />
+					<radio id="zdicoptCtrlHoverShiftKey" label="Ctrl-Shift" value="Shift" />
+					<radio id="zdicoptCtrlHoverAltKey" label="Ctrl-Alt" value="Alt" />
+				</hbox>
+			</radiogroup>
+		</hbox>
+	</vbox>
+
+	<vbox style="width:100%" align="center">
+		<hbox style="font-size:0.8em">
+			<label class="text-link" href="http://www.zdic.net">www.zdic.net</label>
+		</hbox>
+	</vbox>
+
+</dialog>

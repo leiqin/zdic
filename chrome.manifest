@@ -1,0 +1,4 @@
+content zdic chrome/content/
+skin zdic classic/1.0 chrome/skin/
+
+locale zdic zh-CN chrome/locale/zh-CN/
