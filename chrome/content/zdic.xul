@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://zdic/skin/zdic.css" type="text/css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://zdic/locale/zdic.dtd">
+
+<overlay id="zdicOverlay" 
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+   <script src="chrome://zdic/content/options.js" />
+   <script src="chrome://zdic/content/zdic.js" />
+
+   <popupset id="mainPopupSet">
+      <panel id="zdicpopup" 
+             ignorekeys="true"
+             onpopupshown="zdic.popup.on()"
+             onpopuphidden="zdic.popup.off()">
+			 <html:div id="zdicdiv">
+				 <html:div id="zdictxt"/>
+				 <html:iframe id="zdiciframe"/>
+				 <html:div id="zdichelp">
+					 <html:span class="zdiclink" onclick="zdic.popup.close();gBrowser.selectedTab = gBrowser.addTab('http://www.zdic.net');">www.zdic.net</html:span>
+				 </html:div>
+			 </html:div>
+      </panel>
+   </popupset>
+
+   <script>
+      zdic.log.m("zdic.xul done");
+   </script>
+</overlay>
+

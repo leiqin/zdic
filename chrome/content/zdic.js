@@ -1,18 +1,45 @@
 var zdic = { 
 
 	init : function() {
-		zdic.log.m("init");
+		zdic.log.m("zdic.init");
+		var appcontent = document.getElementById("appcontent");   // browser
+		if (appcontent)
+		{
+			appcontent.addEventListener("load", zdic.contentLoadHandler, true);
+		}
 		window.addEventListener("keydown", zdic.keydownHandler, true);
 	},
 
+	contentLoadHandler : function(evt) {
+		zdic.log.m("zdic.contentLoadHandler");
+		var doc = evt.originalTarget;
+		if (doc instanceof HTMLDocument)
+		{
+			// register mouse handlers
+			// we register them with content documents only because we
+			// do not want the events fired when user click on menues, etc.
+			doc.addEventListener("click", zdic.clickHandler, true);
+			doc.addEventListener("mousemove", zdic.mousemoveHandler, true);
+		}
+	},
+
 	clickHandler : function(event) {
+		zdic.log.m('zdic.click');
+		if (zdicopts.enableSelect)
+			zdic.lookup(event);
+	},
+
+	mousemoveHandler : function(event) {
+		if (event.ctrlKey) {
+			zdic.log.m("zdic.mousemove evt.screenX : " + event.screenX);
+		}
 	},
 
 	keydownHandler : function(event) {
-		zdic.log.m("keydown event");
+		zdic.log.m("zdic.keydown event");
 		var isToTranslate = false;
 
-		if (!zdicopts.isCtrlHover) return;
+		if (!zdicopts.enableCtrlHover) return;
 
 		switch (zdicopts.ctrlHoverKey) {
 			case "Shift":
@@ -32,10 +59,8 @@ var zdic = {
 				}
 				break;
 			default:
-				if ((KeyEvent.DOM_VK_CONTROL == event.keyCode &&
-							!event.shiftKey && event.altKey && !event.metaKey)
-						|| (KeyEvent.DOM_VK_ALT == event.keyCode &&
-							event.ctrlKey && !event.shiftKey && !event.metaKey)) {
+				if (KeyEvent.DOM_VK_CONTROL == event.keyCode &&
+							!event.shiftKey && !event.altKey && !event.metaKey) {
 					isToTranslate = true;
 				}
 		}
@@ -48,17 +73,66 @@ var zdic = {
 	},
 
 	lookup : function(event) {
-		var word = document.getSelection();
+		var word = window.content.getSelection();
 		if (word) {
-			word = word.trim();
+			word = word.toString().trim();
 		}
 		if (word) {
-			//TODO
-			zdic.log.m("lookup : " + word);
+			zdic.log.m("zdic.lookup : " + word);
+			zdic.popup.open(event.screenX, event.screenY+18);
+			zdictxt = document.getElementById("zdictxt");
+			zdictxt.textContent = word;
+			zdiciframe = document.getElementById("zdiciframe");
+			zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURI(word);
 		}
 	},
 
 	close : function() {
+		zdic.popup.close();
+	},
+
+	hover : {
+		x : 0,
+		y : 0,
+	},
+
+	popup : {
+		obj : null,
+		isShow : false,
+
+		open : function(x, y) {
+			zdic.log.m("zdic.popup.open");
+			if (!zdic.popup.obj)
+				zdic.popup.obj = document.getElementById("zdicpopup");
+
+			if (zdic.popup.obj) {
+				// clean up.
+				zdic.popup.cleanup();
+				zdic.popup.obj.openPopupAtScreen(x, y, false);
+			}
+		},
+
+		close : function() {
+			zdic.log.m("zdic.popup.close");
+			if (zdic.popup.obj) {
+				if (zdic.popup.obj.state == "open")
+					zdic.popup.obj.hidePopup();
+			}
+		},
+
+		cleanup : function() {
+			//TODO
+		},
+
+		on : function() {
+			zdic.log.m("zdic.popup.on");
+			zdic.popup.isShow = true;
+		},
+
+		off : function() {
+			zdic.log.m("zdic.popup.off");
+			zdic.popup.isShow = false;
+		},
 	},
 
 	log : {

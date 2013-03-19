@@ -1,0 +1,20 @@
+#zdicdiv {
+	width: 240px;
+	height: 300px;
+	border: 2px solid gray;
+}
+
+#zdiciframe {
+	height: 280px;
+	border: none;
+}
+
+#zdichelp {
+	width: 100%;
+	text-align: center;
+}
+
+.zdiclink {
+	cursor: pointer;
+	color: blue;
+}
