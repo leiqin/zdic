@@ -30,9 +30,8 @@ var zdic = {
 	},
 
 	mousemoveHandler : function(event) {
-		if (event.ctrlKey) {
-			zdic.log.m("zdic.mousemove evt.screenX : " + event.screenX);
-		}
+		zdic.hover.x = event.screenX;
+		zdic.hover.y = event.screenY;
 	},
 
 	keydownHandler : function(event) {
@@ -79,7 +78,10 @@ var zdic = {
 		}
 		if (word) {
 			zdic.log.m("zdic.lookup : " + word);
-			zdic.popup.open(event.screenX, event.screenY+18);
+			if (event.screenX)
+				zdic.popup.open(event.screenX, event.screenY+18);
+			else
+				zdic.popup.open(zdic.hover.x, zdic.hover.y+18);
 			zdiciframe = document.getElementById("zdiciframe");
 			zdiciframe.src = "chrome://zdic/content/searching.html";
 			if (zdic.winTimeout) {
@@ -114,8 +116,6 @@ var zdic = {
 				zdic.popup.obj = document.getElementById("zdicpopup");
 
 			if (zdic.popup.obj) {
-				// clean up.
-				zdic.popup.cleanup();
 				zdic.popup.obj.openPopupAtScreen(x, y, false);
 			}
 		},
@@ -126,10 +126,6 @@ var zdic = {
 				if (zdic.popup.obj.state == "open")
 					zdic.popup.obj.hidePopup();
 			}
-		},
-
-		cleanup : function() {
-			//TODO
 		},
 
 		on : function() {
