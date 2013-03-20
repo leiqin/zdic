@@ -6,6 +6,8 @@ var zdicopts = {
 	enableCtrlHover : true,
 	// "","Shift","Alt"
 	ctrlHoverKey : "",
+	// 调试
+	debug : false,
 
 	dialogLoad : function() {
 		this.readPref();
@@ -26,6 +28,7 @@ var zdicopts = {
 		this.enableSelect = myprefs.getBoolPref("enableSelect");
 		this.enableCtrlHover = myprefs.getBoolPref("enableCtrlHover");
 		this.ctrlHoverKey = myprefs.getCharPref("ctrlHoverKey");
+		this.debug = myprefs.getBoolPref("debug");
 	},
 
 	setPref : function() {
@@ -36,6 +39,7 @@ var zdicopts = {
 		myprefs.setBoolPref("enableSelect", this.enableSelect);
 		myprefs.setBoolPref("enableCtrlHover", this.enableCtrlHover);
 		myprefs.setCharPref("ctrlHoverKey", this.ctrlHoverKey);
+		myprefs.setBoolPref("debug", this.debug);
 	},
 
 	readDialog : function() {

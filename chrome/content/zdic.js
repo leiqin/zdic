@@ -178,12 +178,11 @@ var zdic = {
 
 	log : {
 		console : null,
-		debug : false,
 		m : function(msg) {
 			if (!this.console) {
 				this.init();
 			}
-			if (this.debug)
+			if (zdicopts.debug)
 				this.console.logStringMessage(msg);
 		},
 		init : function() {
