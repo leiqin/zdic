@@ -2,7 +2,15 @@ var zdic = {
 
 	init : function() {
 		zdic.log.m("zdic.init");
+
+		if (Application.extensions) {
+			zdic.firstRun(Application.extensions);
+		} else {
+			Application.getExtensions(zdic.firstRun);
+		}
+
 		zdic.updatePref();
+
 		var appcontent = document.getElementById("appcontent");   // browser
 		if (appcontent)
 		{
@@ -52,22 +60,22 @@ var zdic = {
 							event.shiftKey && !event.altKey && !event.metaKey)
 						|| (KeyEvent.DOM_VK_SHIFT == event.keyCode &&
 							event.ctrlKey && !event.altKey && !event.metaKey)) {
-					isToTranslate = true;
-				}
+								isToTranslate = true;
+							}
 				break;
 			case "Alt":
 				if ((KeyEvent.DOM_VK_CONTROL == event.keyCode &&
 							!event.shiftKey && event.altKey && !event.metaKey)
 						|| (KeyEvent.DOM_VK_ALT == event.keyCode &&
 							event.ctrlKey && !event.shiftKey && !event.metaKey)) {
-					isToTranslate = true;
-				}
+								isToTranslate = true;
+							}
 				break;
 			default:
 				if (KeyEvent.DOM_VK_CONTROL == event.keyCode &&
-							!event.shiftKey && !event.altKey && !event.metaKey) {
-					isToTranslate = true;
-				}
+						!event.shiftKey && !event.altKey && !event.metaKey) {
+							isToTranslate = true;
+						}
 		}
 
 		if (isToTranslate) {
@@ -95,7 +103,7 @@ var zdic = {
 				zdic.winTimeout = null;
 			}
 			zdic.winTimeout = window.setTimeout(function() {
-				zdic.log.m('zidc.seaching');
+				zdic.log.m('zdic.seaching');
 				zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURI(word);
 			}, 200);
 		}
@@ -119,7 +127,9 @@ var zdic = {
 		},
 
 		update : function() {
-			var zdicbutton = document.getElementById("zdicbutton")
+			var zdicbutton = document.getElementById("zdicbutton");
+			if (!zdicbutton) return;
+
 			if (zdicopts.enableSelect) {
 				zdicbutton.setAttribute("enableSelect", "true")
 			} else {
@@ -181,8 +191,52 @@ var zdic = {
 				.getService(Components.interfaces.nsIConsoleService);
 		},
 	},
+
+	firstRun : function(extensions) {
+		zdic.log.m("zdic.firstRun function");
+		var extension = extensions.get("zdic@leiqin.name");
+
+		zdic.log.m("zdic.firstRun : " + extension.firstRun);
+		if (extension.firstRun) {
+			zdic.log.m('zdic.firstRun');
+			// add button here.
+			zdic.installButton("nav-bar", "zdicbutton");
+			// The "addon-bar" is available since Firefox 4
+			zdic.installButton("addon-bar", "zdicbutton");
+		}
+	},
+
+	/**
+	 * Installs the toolbar button with the given ID into the given
+	 * toolbar, if it is not already present in the document.
+	 *
+	 * @param {string} toolbarId The ID of the toolbar to install to.
+	 * @param {string} id The ID of the button to install.
+	 * @param {string} afterId The ID of the element to insert after. @optional
+	 */
+	installButton : function(toolbarId, id, afterId) {
+		if (!document.getElementById(id)) {
+			var toolbar = document.getElementById(toolbarId);
+
+			// If no afterId is given, then append the item to the toolbar
+			var before = null;
+			if (afterId) {
+				var elem = document.getElementById(afterId);
+				if (elem && elem.parentNode == toolbar)
+					before = elem.nextElementSibling;
+			}
+
+			toolbar.insertItem(id, before);
+			toolbar.setAttribute("currentset", toolbar.currentSet);
+			document.persist(toolbar.id, "currentset");
+
+			if (toolbarId == "addon-bar")
+				toolbar.collapsed = false;
+		}
+	}
 };
 
 window.addEventListener("load", zdic.init);
+
 
 // vim: foldmarker={,} foldmethod=marker
