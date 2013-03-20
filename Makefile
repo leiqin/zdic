@@ -1,4 +1,4 @@
-xpi = zdic-1.0.xpi
+xpi = zdic.xpi
 
 build:
 	zip -r $(xpi) * -x '*.swp' -x '*.xpi' -x 'Makefile'
