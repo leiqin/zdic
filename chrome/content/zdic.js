@@ -2,12 +2,17 @@ var zdic = {
 
 	init : function() {
 		zdic.log.m("zdic.init");
+		zdic.updatePref();
 		var appcontent = document.getElementById("appcontent");   // browser
 		if (appcontent)
 		{
 			appcontent.addEventListener("load", zdic.contentLoadHandler, true);
 		}
 		window.addEventListener("keydown", zdic.keydownHandler, true);
+	},
+
+	updatePref : function() {
+		zdicopts.readPref();
 	},
 
 	contentLoadHandler : function(evt) {

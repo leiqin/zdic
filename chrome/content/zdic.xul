@@ -4,28 +4,37 @@
 <!DOCTYPE dialog SYSTEM "chrome://zdic/locale/zdic.dtd">
 
 <overlay id="zdicOverlay" 
-         xmlns:html="http://www.w3.org/1999/xhtml"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-   <script src="chrome://zdic/content/options.js" />
-   <script src="chrome://zdic/content/zdic.js" />
+	<script src="chrome://zdic/content/options.js" />
+	<script src="chrome://zdic/content/zdic.js" />
 
-   <popupset id="mainPopupSet">
-      <panel id="zdicpopup" 
-             ignorekeys="true"
-             onpopupshown="zdic.popup.on()"
-             onpopuphidden="zdic.popup.off()">
-			 <html:div id="zdicdiv">
-				 <html:iframe id="zdiciframe"/>
-				 <html:div id="zdichelp">
-					 <html:span class="zdiclink" onclick="zdic.popup.close();gBrowser.selectedTab = gBrowser.addTab('http://www.zdic.net');">www.zdic.net</html:span>
-				 </html:div>
-			 </html:div>
-      </panel>
-   </popupset>
+	<popupset id="mainPopupSet">
+		<panel id="zdicpopup" 
+			ignorekeys="true"
+			onpopupshown="zdic.popup.on()"
+			onpopuphidden="zdic.popup.off()">
+			<html:div id="zdicdiv">
+				<html:iframe id="zdiciframe"/>
+				<html:div id="zdichelp">
+					<html:span class="zdiclink" onclick="zdic.popup.close();gBrowser.selectedTab = gBrowser.addTab('http://www.zdic.net');">www.zdic.net</html:span>
+				</html:div>
+			</html:div>
+		</panel>
+	</popupset>
 
-   <script>
-      zdic.log.m("zdic.xul done");
-   </script>
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="zdicbutton"
+			class="toolbarbutton-1 chromeclass-toolbar-additional" 
+			label="&zdic.button.label;"
+			tooltiptext="&zdic.button.tooltip;"
+			oncommand=""
+			/>
+	</toolbarpalette>
+
+	<script>
+		zdic.log.m("zdic.xul done");
+	</script>
 </overlay>
 

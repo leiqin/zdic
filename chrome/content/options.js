@@ -67,12 +67,10 @@ var zdicopts = {
 		var enumerator = wm.getEnumerator("navigator:browser");
 		while(enumerator.hasMoreElements()) {
 			var win = enumerator.getNext();
-			if (win && win.gd12)
-				win.zdicopts.readPref();
+			if (win && win.zdic)
+				win.zdic.updatePref();
 		}
 	}
 };
-
-zdicopts.readPref();
 
 // vim: foldmarker={,} foldmethod=marker
