@@ -18,3 +18,11 @@
 	cursor: pointer;
 	color: blue;
 }
+
+#zdicbutton[enableSelect] {
+  list-style-image: url("chrome://zdic/skin/logo16.png");
+}
+
+#zdicbutton {
+  list-style-image: url("chrome://zdic/skin/logogray16.png");
+}

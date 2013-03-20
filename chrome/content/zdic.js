@@ -13,6 +13,7 @@ var zdic = {
 
 	updatePref : function() {
 		zdicopts.readPref();
+		zdic.button.update();
 	},
 
 	contentLoadHandler : function(evt) {
@@ -83,7 +84,7 @@ var zdic = {
 		}
 		if (word) {
 			zdic.log.m("zdic.lookup : " + word);
-			if (event.screenX)
+			if (event && event.screenX)
 				zdic.popup.open(event.screenX, event.screenY+18);
 			else
 				zdic.popup.open(zdic.hover.x, zdic.hover.y+18);
@@ -104,6 +105,27 @@ var zdic = {
 
 	close : function() {
 		zdic.popup.close();
+	},
+
+	button : {
+
+		command : function(event) {
+			zdicopts.enableSelect = !zdicopts.enableSelect;
+			zdicopts.setPref();
+			zdicopts.notifyBrowser();
+			if (zdicopts.enableSelect && !zdic.popup.isShow) {
+				zdic.lookup(event);
+			}
+		},
+
+		update : function() {
+			var zdicbutton = document.getElementById("zdicbutton")
+			if (zdicopts.enableSelect) {
+				zdicbutton.setAttribute("enableSelect", "true")
+			} else {
+				zdicbutton.removeAttribute("enableSelect")
+			}
+		},
 	},
 
 	hover : {
@@ -146,7 +168,7 @@ var zdic = {
 
 	log : {
 		console : null,
-		debug : false,
+		debug : true,
 		m : function(msg) {
 			if (!this.console) {
 				this.init();

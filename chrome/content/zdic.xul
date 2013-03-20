@@ -29,7 +29,7 @@
 			class="toolbarbutton-1 chromeclass-toolbar-additional" 
 			label="&zdic.button.label;"
 			tooltiptext="&zdic.button.tooltip;"
-			oncommand=""
+			oncommand="zdic.button.command(event)"
 			/>
 	</toolbarpalette>
 
