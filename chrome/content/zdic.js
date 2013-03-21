@@ -192,12 +192,9 @@ var zdic = {
 	},
 
 	firstRun : function(extensions) {
-		zdic.log.m("zdic.firstRun function");
 		var extension = extensions.get("zdic@leiqin.name");
-
 		zdic.log.m("zdic.firstRun : " + extension.firstRun);
 		if (extension.firstRun) {
-			zdic.log.m('zdic.firstRun');
 			// add button here.
 			zdic.installButton("nav-bar", "zdicbutton");
 			// The "addon-bar" is available since Firefox 4
