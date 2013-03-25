@@ -23,7 +23,7 @@ var zdicopts = {
 	readPref : function() {
 		var prefs = Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService);
-		var myprefs = prefs.getBranch("extensions.zdic.");
+		var myprefs = prefs.getBranch("extensions.zdic@leiqin.name.");
 
 		this.enableSelect = myprefs.getBoolPref("enableSelect");
 		this.enableCtrlHover = myprefs.getBoolPref("enableCtrlHover");
@@ -34,8 +34,8 @@ var zdicopts = {
 	setPref : function() {
 		var prefs = Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService);
-		this._myprefs = prefs.getBranch("extensions.zdic.");
-		this._defprefs = prefs.getDefaultBranch("extensions.zdic.");
+		this._myprefs = prefs.getBranch("extensions.zdic@leiqin.name.");
+		this._defprefs = prefs.getDefaultBranch("extensions.zdic@leiqin.name.");
 
 		this.setPrefValue("enableSelect", this.enableSelect);
 		this.setPrefValue("enableCtrlHover", this.enableCtrlHover);
