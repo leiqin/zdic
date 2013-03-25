@@ -3,3 +3,4 @@
 <!ENTITY zdicopt.isCtrlHover "启用按键释义，功能键: ">
 <!ENTITY zdic.button.label "汉典">
 <!ENTITY zdic.button.tooltip "启用/禁用 选字释义">
+<!ENTITY zdic.menu.options "首选项">

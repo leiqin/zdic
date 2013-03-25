@@ -176,6 +176,10 @@ var zdic = {
 		},
 	},
 
+	openOptionsDialog : function(event) {
+		zdic.log.m("zdic.openOptionsDialog");
+	},
+
 	log : {
 		console : null,
 		m : function(msg) {

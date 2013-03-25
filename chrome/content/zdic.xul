@@ -22,6 +22,10 @@
 				</html:div>
 			</html:div>
 		</panel>
+		<menupopup id="zdic-popup-menu">
+			<menuitem id="zdic-menu-options" label="&zdic.menu.options;"
+				oncommand="zdic.openOptionsDialog(event)"/>
+		</menupopup>
 	</popupset>
 
 	<toolbarpalette id="BrowserToolbarPalette">
@@ -30,6 +34,7 @@
 			label="&zdic.button.label;"
 			tooltiptext="&zdic.button.tooltip;"
 			oncommand="zdic.button.command(event)"
+			context="zdic-popup-menu"
 			/>
 	</toolbarpalette>
 
