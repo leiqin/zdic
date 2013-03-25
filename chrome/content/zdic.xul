@@ -10,6 +10,11 @@
 	<script src="chrome://zdic/content/options.js" />
 	<script src="chrome://zdic/content/zdic.js" />
 
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="zdic-string-bundle"
+			src="chrome://zdic/locale/zdic.properties" />
+	</stringbundleset>
+
 	<popupset id="mainPopupSet">
 		<panel id="zdicpopup" 
 			ignorekeys="true"
@@ -22,7 +27,10 @@
 				</html:div>
 			</html:div>
 		</panel>
-		<menupopup id="zdic-popup-menu">
+		<menupopup id="zdic-popup-menu" onpopupshowing="zdic.menupopup.popupshowing(event)">
+			<menuitem id="zdic-menu-toggle-select" label="&zdic.button.tooltip;" 
+				oncommand="zdic.toggleSelect(event)"/>
+			<menuseparator />
 			<menuitem id="zdic-menu-options" label="&zdic.menu.options;"
 				oncommand="zdic.openOptionsDialog(event)"/>
 		</menupopup>
@@ -33,7 +41,7 @@
 			class="toolbarbutton-1 chromeclass-toolbar-additional" 
 			label="&zdic.button.label;"
 			tooltiptext="&zdic.button.tooltip;"
-			oncommand="zdic.button.command(event)"
+			oncommand="zdic.toggleSelect(event)"
 			context="zdic-popup-menu"
 			/>
 	</toolbarpalette>

@@ -115,27 +115,45 @@ var zdic = {
 		zdic.popup.close();
 	},
 
-	button : {
+	toggleSelect : function(event) {
+		zdicopts.enableSelect = !zdicopts.enableSelect;
+		zdicopts.setPref();
+		zdicopts.notifyBrowser();
+		if (zdicopts.enableSelect && !zdic.popup.isShow && event) {
+			zdic.lookup(event);
+		}
+	},
 
-		command : function(event) {
-			zdicopts.enableSelect = !zdicopts.enableSelect;
-			zdicopts.setPref();
-			zdicopts.notifyBrowser();
-			if (zdicopts.enableSelect && !zdic.popup.isShow) {
-				zdic.lookup(event);
-			}
-		},
+	button : {
 
 		update : function() {
 			var zdicbutton = document.getElementById("zdicbutton");
 			if (!zdicbutton) return;
 
 			if (zdicopts.enableSelect) {
-				zdicbutton.setAttribute("enableSelect", "true")
+				zdicbutton.setAttribute("enableSelect", "true");
+				zdicbutton.setAttribute("tooltiptext", zdic.string.get("zdic.disableSelect"));
 			} else {
-				zdicbutton.removeAttribute("enableSelect")
+				zdicbutton.removeAttribute("enableSelect");
+				zdicbutton.setAttribute("tooltiptext", zdic.string.get("zdic.enableSelect"));
 			}
 		},
+	},
+
+	menupopup : {
+		
+		popupshowing : function(event) {
+			toggleSelect = document.getElementById("zdic-menu-toggle-select");
+			if (!toggleSelect) 
+				return;
+
+			if (zdicopts.enableSelect) {
+				toggleSelect.setAttribute("label", zdic.string.get("zdic.disableSelect"));
+			} else {
+				toggleSelect.setAttribute("label", zdic.string.get("zdic.enableSelect"));
+			}
+		},
+
 	},
 
 	hover : {
@@ -178,6 +196,22 @@ var zdic = {
 
 	openOptionsDialog : function(event) {
 		zdic.log.m("zdic.openOptionsDialog");
+		//TODO
+	},
+
+	string : {
+		
+		get : function(name) {
+			//TODO
+			if (!this._stringBundle) {
+				this._stringBundle = stringBundle = 
+					document.getElementById("zdic-string-bundle");
+			}
+			return this._stringBundle.getString(name);
+		},
+
+		_stringBundle : null,
+
 	},
 
 	log : {
