@@ -196,7 +196,30 @@ var zdic = {
 
 	openOptionsDialog : function(event) {
 		zdic.log.m("zdic.openOptionsDialog");
-		//TODO
+		zdic.prefWindow.openPreferences();
+	},
+
+	prefWindow : {
+
+		_preferencesWindow : null,
+
+		openPreferences : function() {
+			if (null == this._preferencesWindow || this._preferencesWindow.closed) {
+				var instantApply =
+					Application.prefs.get("browser.preferences.instantApply");
+				var features =
+					"chrome,titlebar,toolbar,centerscreen" +
+					(instantApply.value ? ",dialog=no" : ",modal");
+
+				this._preferencesWindow =
+					window.openDialog(
+							"chrome://zdic/content/options.xul",
+							"zdic-preferences-window", features);
+			}
+
+			this._preferencesWindow.focus();
+		},
+
 	},
 
 	string : {
