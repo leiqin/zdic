@@ -1,0 +1,5 @@
+<!ENTITY zdicopt.title "Options">
+<!ENTITY zdicopt.isSelect "Enable select-to-explain"> <!ENTITY zdicopt.isCtrlHover "Enable keydown-to-explain, with key: ">
+<!ENTITY zdic.button.label "Zdic">
+<!ENTITY zdic.button.tooltip "Enable/Disable select-to-explain">
+<!ENTITY zdic.menu.options "Options">
