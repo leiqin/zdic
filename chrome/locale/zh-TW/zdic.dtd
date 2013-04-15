@@ -1,0 +1,6 @@
+<!ENTITY zdicopt.title "選項">
+<!ENTITY zdicopt.isSelect "啓用選字釋義">
+<!ENTITY zdicopt.isCtrlHover "啓用按鍵釋義，功能鍵: ">
+<!ENTITY zdic.button.label "漢典">
+<!ENTITY zdic.button.tooltip "啓用/禁用 選字釋義">
+<!ENTITY zdic.menu.options "首選項">

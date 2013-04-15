@@ -5,5 +5,6 @@ style chrome://global/content/customizeToolbar.xul chrome://zdic/skin/zdic.css
 
 overlay chrome://browser/content/browser.xul chrome://zdic/content/zdic.xul
 
-locale zdic zh-CN chrome/locale/zh-CN/
 locale zdic en-US chrome/locale/en-US/
+locale zdic zh-CN chrome/locale/zh-CN/
+locale zdic zh-TW chrome/locale/zh-TW/
