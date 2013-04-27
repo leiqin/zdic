@@ -35,7 +35,6 @@ var zdic = {
 			// we register them with content documents only because we
 			// do not want the events fired when user click on menues, etc.
 			doc.addEventListener("click", zdic.clickHandler, true);
-			doc.addEventListener("mousemove", zdic.mousemoveHandler, true);
 		}
 	},
 
@@ -43,11 +42,6 @@ var zdic = {
 		zdic.log.m('zdic.click');
 		if (zdicopts.enableSelect)
 			zdic.lookup(event);
-	},
-
-	mousemoveHandler : function(event) {
-		zdic.hover.x = event.screenX;
-		zdic.hover.y = event.screenY;
 	},
 
 	keydownHandler : function(event) {
@@ -94,10 +88,8 @@ var zdic = {
 		}
 		if (word) {
 			zdic.log.m("zdic.lookup : " + word);
-			if (event && event.screenX)
-				zdic.popup.open(event.screenX, event.screenY+18);
-			else
-				zdic.popup.open(zdic.hover.x, zdic.hover.y+18);
+			zdic.popup.open(window.mozInnerScreenX+MousePosTracker._x, 
+					window.mozInnerScreenY+MousePosTracker._y+18);
 			zdiciframe = document.getElementById("zdiciframe");
 			zdiciframe.src = "chrome://zdic/content/searching.html";
 			if (zdic.winTimeout) {
@@ -156,11 +148,6 @@ var zdic = {
 			}
 		},
 
-	},
-
-	hover : {
-		x : 0,
-		y : 0,
 	},
 
 	popup : {
