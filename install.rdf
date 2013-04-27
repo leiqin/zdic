@@ -8,7 +8,7 @@
 
         <em:name>Zdic</em:name>
 		<em:description>A tool for http://www.zdic.net</em:description>
-        <em:version>1.5</em:version>
+        <em:version>1.6</em:version>
         <em:creator>Lei Qin</em:creator>
         <!-- optional items -->
 		<em:homepageURL>https://github.com/leiqin/zdic</em:homepageURL>
@@ -21,6 +21,15 @@
              <em:locale>zh-CN</em:locale>
              <em:name>汉典</em:name>
 			 <em:description>一个汉典(www.zdic.net)的工具</em:description>
+             <em:creator>Lei Qin</em:creator>
+           </Description>
+        </em:localized>
+
+        <em:localized>
+           <Description>
+             <em:locale>zh-TW</em:locale>
+             <em:name>漢典</em:name>
+			 <em:description>一個漢典(www.zdic.net)的工具</em:description>
              <em:creator>Lei Qin</em:creator>
            </Description>
         </em:localized>
