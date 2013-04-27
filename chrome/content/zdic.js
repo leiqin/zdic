@@ -137,7 +137,7 @@ var zdic = {
 	menupopup : {
 		
 		popupshowing : function(event) {
-			toggleSelect = document.getElementById("zdic-menu-toggle-select");
+			var toggleSelect = document.getElementById("zdic-menu-toggle-select");
 			if (!toggleSelect) 
 				return;
 
