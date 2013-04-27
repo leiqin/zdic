@@ -104,7 +104,7 @@ var zdic = {
 			}
 			zdic.winTimeout = window.setTimeout(function() {
 				zdic.log.m('zdic.seaching');
-				zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURI(word);
+				zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURIComponent(word);
 			}, 200);
 		}
 	},
