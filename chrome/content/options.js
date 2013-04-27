@@ -1,3 +1,5 @@
+"use strict"
+
 var zdicopts = {
 
 	// 选字释义

@@ -1,3 +1,5 @@
+"use strict"
+
 var zdic = { 
 
 	init : function() {
@@ -225,10 +227,8 @@ var zdic = {
 	string : {
 		
 		get : function(name) {
-			//TODO
 			if (!this._stringBundle) {
-				this._stringBundle = stringBundle = 
-					document.getElementById("zdic-string-bundle");
+				this._stringBundle = document.getElementById("zdic-string-bundle");
 			}
 			return this._stringBundle.getString(name);
 		},
