@@ -88,8 +88,6 @@ var zdic = {
 		}
 		if (word) {
 			zdic.log.m("zdic.lookup : " + word);
-			zdic.popup.open(window.mozInnerScreenX+MousePosTracker._x, 
-					window.mozInnerScreenY+MousePosTracker._y+18);
 			zdiciframe = document.getElementById("zdiciframe");
 			zdiciframe.src = "chrome://zdic/content/searching.html";
 			if (zdic.winTimeout) {
@@ -97,6 +95,8 @@ var zdic = {
 				zdic.winTimeout = null;
 			}
 			zdic.winTimeout = window.setTimeout(function() {
+				zdic.popup.open(window.mozInnerScreenX+MousePosTracker._x, 
+						window.mozInnerScreenY+MousePosTracker._y+18);
 				zdic.log.m('zdic.seaching');
 				zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURIComponent(word);
 			}, 200);
