@@ -50,7 +50,7 @@ var zdicopts = {
 
 	setPrefValue : function(name, value, type) {
 		if (!type) {
-			vtype = typeof(value);
+			var vtype = typeof(value);
 			switch(vtype) {
 				case "string":
 					type = "char";
