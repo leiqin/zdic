@@ -89,7 +89,7 @@ var zdic = {
 		if (word) {
 			zdic.log.m("zdic.lookup : " + word);
 			zdiciframe = document.getElementById("zdiciframe");
-			zdiciframe.src = "chrome://zdic/content/searching.html";
+			zdic.setIframeSrc(zdiciframe, "chrome://zdic/content/searching.html");
 			if (zdic.winTimeout) {
 				window.clearTimeout(zdic.winTimeout);
 				zdic.winTimeout = null;
@@ -98,8 +98,31 @@ var zdic = {
 				zdic.popup.open(window.mozInnerScreenX+MousePosTracker._x, 
 						window.mozInnerScreenY+MousePosTracker._y+18);
 				zdic.log.m('zdic.seaching');
-				zdiciframe.src = "http://www.zdic.net/search/?c=3&q=" + encodeURIComponent(word);
+				zdic.setIframeSrc(zdiciframe, "http://www.zdic.net/search/?c=3&q=" + encodeURIComponent(word));
 			}, 200);
+		}
+	},
+
+	setIframeSrc : function(iframe, src) {
+		/*
+		 * 在 FireFox 21 中 xul 中的 iframe 和 网页中的 iframe 是一样的，是：
+		 *		[object HTMLIFrameElement]
+		 *	改变 url 需要使用：
+		 *		iframe.src = some_url
+		 * 而在 FireFox 22 中 xul 中的 iframe 变成了：
+		 *		[object ChromeWindow] 有时候是 [object XrayWrapper [object ChromeWindow]]
+		 *	改变 url 需要使用：
+		 *		iframe.location = some_url
+		 */
+		zdic.log.m("iframe is " + iframe)
+		// typeof iframe -> "object"
+		if (iframe instanceof HTMLIFrameElement) {
+			iframe.src = src;
+		} else if (iframe instanceof ChromeWindow) {
+			iframe.location = src;
+		} else {
+			iframe.src =src;
+			iframe.location = src;
 		}
 	},
 
