@@ -110,6 +110,7 @@ var zdic = {
 	},
 
 	toggleSelect : function(event) {
+		zdicopts.readPref();
 		zdicopts.enableSelect = !zdicopts.enableSelect;
 		zdicopts.setPref();
 		zdicopts.notifyBrowser();
