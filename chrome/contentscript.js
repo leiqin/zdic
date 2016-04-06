@@ -82,6 +82,8 @@ document.addEventListener("keydown", keydown_handler, true);
 
 var zdic_layer_ui;
 var zdic_layer_mouseover = false;
+var zdic_layer_width = 244;
+var zdic_layer_height = 300;
 
 function zdic_layer_over() {
 	//console.log('zdic_layer_over');
@@ -97,8 +99,8 @@ function init_zidc_layer_ui() {
 	var div = document.createElement('div');
 	div.setAttribute('id', 'zdic-layer-leiqin.info');
 	div.setAttribute('style', 'position: fixed; top: 0; left: 0; z-index: 10000;');
-	div.style.width = '244px';
-	div.style.height = '300px';
+	div.style.width = zdic_layer_width + 'px';
+	div.style.height = zdic_layer_height + 'px';
 	div.style.border = '2px solid gray';
 	div.style.background = 'white';
 	div.style.display = 'none';
@@ -147,7 +149,7 @@ function lookup(event) {
 	}
 	var sel = document.getSelection();
 	if (sel) {
-		word = sel.toString().trim();
+		var word = sel.toString().trim();
 	}
 	//console.log('lookup word <' + word + '>');
 	if (word) {
@@ -156,10 +158,11 @@ function lookup(event) {
 		zl().div.appendChild(zl().iframe);
 		zl().p.innerText = word;
 
-		r = sel.getRangeAt(0);
-		rect = r.getBoundingClientRect();
-		zl().div.style.top = rect.bottom + 10 + 'px';
-		zl().div.style.left = rect.right + 'px';
+		var r = sel.getRangeAt(0);
+		var rect = r.getBoundingClientRect();
+		var c = find_zdic_layer_coordinate(rect);
+		zl().div.style.top = c.top + 'px';
+		zl().div.style.left = c.left + 'px';
 		zl().div.style.display = 'block';
 		zl().hidden = false;
 
@@ -168,6 +171,22 @@ function lookup(event) {
 	} else {
 		hidden_zdic_layer();
 	}
+}
+
+function find_zdic_layer_coordinate(rect) {
+	var t = rect.bottom + 10;
+	if (t + zdic_layer_height > window.innerHeight)
+		t = window.innerHeight - zdic_layer_height;
+	if (t < 0)
+		t = 0;
+
+	var l = rect.right;
+	if (l + zdic_layer_width > window.innerWidth)
+		l = window.innerWidth - zdic_layer_width;
+	if (l < 0)
+		l = 0;
+
+	return {top: t, left: l};
 }
 
 function search_url(word) {
