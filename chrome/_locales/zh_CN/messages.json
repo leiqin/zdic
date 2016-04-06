@@ -1,0 +1,35 @@
+{
+	"ext_name": {
+		"message": "汉典",
+		"description": "name of the extension"
+	},
+	"ext_desc": {
+		"message": "一个汉典(www.zdic.net)的工具",
+		"description": "description of the extension"
+	},
+	"enableSelect": {
+		"message": "启用选字释义",
+		"description": "Enable select-to-explain"
+	},
+	"disableSelect": {
+		"message": "禁用选字释义",
+		"description": "Disable select-to-explain"
+	},
+	"enableCtrlHover": {
+		"message": "启用按键释义",
+		"description": "Enable keydown-to-explain"
+	},
+	"ctrlHoverKey": {
+		"message": "功能键",
+		"description": "what key to keydown-to-explain"
+	},
+	"save": {
+		"message": "保存",
+		"description": "save"
+	},
+	"optionSaved": {
+		"message": "已保存",
+		"description": "Options Saved"
+	}
+}
+

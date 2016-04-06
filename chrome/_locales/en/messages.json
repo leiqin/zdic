@@ -1,0 +1,35 @@
+{
+	"ext_name": {
+		"message": "Zdic",
+		"description": "name of the extension"
+	},
+	"ext_desc": {
+		"message": "A tool for http://www.zdic.net",
+		"description": "description of the extension"
+	},
+	"enableSelect": {
+		"message": "Enable select-to-explain",
+		"description": "Enable select-to-explain"
+	},
+	"disableSelect": {
+		"message": "Disable select-to-explain",
+		"description": "Disable select-to-explain"
+	},
+	"enableCtrlHover": {
+		"message": "Enable keydown-to-explain",
+		"description": "Enable keydown-to-explain"
+	},
+	"ctrlHoverKey": {
+		"message": "With Key",
+		"description": "what key to keydown-to-explain"
+	},
+	"save": {
+		"message": "Save",
+		"description": "save"
+	},
+	"optionSaved": {
+		"message": "Options Saved",
+		"description": "Options Saved"
+	}
+}
+

@@ -1,0 +1,46 @@
+{
+	"manifest_version": 2,
+
+	"name": "__MSG_ext_name__",
+	"description": "__MSG_ext_desc__",
+	"version": "1.0",
+
+	"author": "leiqin",
+
+	"default_locale": "en",
+
+	"icons": {
+		"16": "icon/logo16.png",
+		"32": "icon/logo32.png",
+		"48": "icon/logo48.png",
+		"128": "icon/logo128.png"
+	},
+
+	"browser_action": {
+		"default_icon": {
+			"38": "icon/logo38.png"
+		},
+		"default_title": "__MSG_disableSelect__"
+	},
+
+	"background" : {
+		"scripts" : ["background.js"]
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["contentscript.js"],
+			"run_at": "document_end"
+		}
+	],
+
+	"options_ui": {
+		"chrome_style": true,
+		"page": "options.html"
+	},
+
+	"permissions": [
+		"storage"
+	]
+}
