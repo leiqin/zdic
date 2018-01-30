@@ -8,8 +8,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	});
 });
 
-chrome.storage.sync.get({enableSelect: true}, function(items) {
+chrome.storage.sync.get({enableSelect: true, enableContentMenu: true}, function(items) {
 	setBrowerActionIcon(items.enableSelect);
+	changeContentMenu(items.enableContentMenu);
 });
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
