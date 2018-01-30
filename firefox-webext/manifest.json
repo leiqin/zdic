@@ -3,7 +3,8 @@
 
 	"applications": {
 		"gecko": {
-			"id": "zdic@leiqin.name"
+			"id": "zdic@leiqin.name",
+			"strict_min_version": "57.0"
 		}
 	},
 
