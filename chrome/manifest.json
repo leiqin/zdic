@@ -3,7 +3,7 @@
 
 	"name": "__MSG_ext_name__",
 	"description": "__MSG_ext_desc__",
-	"version": "1.0",
+	"version": "1.8",
 
 	"author": "leiqin",
 
@@ -41,6 +41,8 @@
 	},
 
 	"permissions": [
-		"storage"
+		"storage",
+		"contextMenus",
+		"activeTab"
 	]
 }

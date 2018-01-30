@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
-	<head><title>My Test Extension Options</title></head>
+	<head>
+		<meta charset="utf-8"/>
+		<title>My Test Extension Options</title>
+	</head>
 	<body>
-
-		<label>
+		<label style="display:block">
 			<input type="checkbox" id="enableSelect">
 			<span id="lang_enableSelect">Enable select-to-explain</span>
 		</label>
-		<br/>
 
-		<label>
-			<input type="checkbox" id="enableCtrlHover">
-			<span id="lang_enableCtrlHover">Enable keydown-to-explain</span>,
+		<label style="display:block">
+			<input type="checkbox" id="enableContentMenu">
+			<span id="lang_enableContentMenu">Enable content-menu</span>
 		</label>
 
-		<span id="lang_ctrlHoverKey">with Key</span>:
-		<select id="ctrlHoverKey">
+		<label style="display:block">
+			<input type="checkbox" id="enableCtrlHover">
+			<span id="lang_enableCtrlHover">Enable keydown-to-explain</span>
+		</label>
+
+		<div>
+		<span style="display:inline" id="lang_ctrlHoverKey">with Key</span>:
+		<select style="display:inline" id="ctrlHoverKey">
 			<option value="">Ctrl</option>
 			<option value="Shift">Ctrl-Shift</option>
 			<option value="Alt" selected="true">Ctrl-Alt</option>
 		</select>
+		</div>
 
 		<div id="status"></div>
-		<button id="lang_save">Save</button>
 
 		<script src="options.js"></script>
 	</body>

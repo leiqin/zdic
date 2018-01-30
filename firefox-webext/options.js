@@ -17,6 +17,7 @@ function save_options() {
 		enableCtrlHover: enableCtrlHover,
 		ctrlHoverKey: ctrlHoverKey
 	}, function() {
+		// Update status to let user know options were saved.
 		var status = document.getElementById('status');
 		status.textContent = chrome.i18n.getMessage('optionSaved');
 		setTimeout(function() {

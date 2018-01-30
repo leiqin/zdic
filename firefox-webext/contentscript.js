@@ -166,7 +166,7 @@ function lookup(event) {
 		zl().div.style.display = 'block';
 		zl().hidden = false;
 
-		console.log('url ' + search_url(word));
+		//console.log('url ' + search_url(word));
 		zl().iframe.src = search_url(word);
 	} else {
 		hidden_zdic_layer();

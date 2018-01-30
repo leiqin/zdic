@@ -7,6 +7,14 @@
 		"message": "A tool for http://www.zdic.net",
 		"description": "description of the extension"
 	},
+	"menu_title": {
+		"message": "open in Zdic",
+		"description": "open in Zdic"
+	},
+	"enableContentMenu": {
+		"message": "Enable Content Menu",
+		"description": "Enable content-menu"
+	},
 	"enableSelect": {
 		"message": "Enable select-to-explain",
 		"description": "Enable select-to-explain"

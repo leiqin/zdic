@@ -17,6 +17,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 		if ('enableSelect' in changes) {
 			setBrowerActionIcon(changes.enableSelect.newValue);
 		}
+		if ('enableContentMenu' in changes) {
+			changeContentMenu(changes.enableContentMenu.newValue);
+		}
 	}
 });
 
@@ -33,3 +36,33 @@ function setBrowerActionIcon(enableSelect) {
 		}});
 	}
 }
+
+var menu_id = "zdic.net-by-leiqin";
+
+function changeContentMenu(enableContentMenu) {
+	if (enableContentMenu) {
+		chrome.contextMenus.create({
+			id: menu_id,
+			title: chrome.i18n.getMessage('menu_title'),
+			contexts: ["all"]
+		});
+	} else {
+		chrome.contextMenus.remove(menu_id);
+	}
+}
+
+function openZdicTab(word) {
+	    if (word) {
+			chrome.tabs.create({url: "http://www.zdic.net/search/?q=" + encodeURIComponent(word)});
+		} else {
+			chrome.tabs.create({url: "http://www.zdic.net/"})
+		}
+};
+
+chrome.contextMenus.onClicked.addListener(function(info, tab) {
+	    if (info.menuItemId !== menu_id) {
+			return;
+		}
+	    var word = info.selectionText;
+		openZdicTab(word);
+});

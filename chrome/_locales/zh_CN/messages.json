@@ -7,6 +7,14 @@
 		"message": "一个汉典(www.zdic.net)的工具",
 		"description": "description of the extension"
 	},
+	"menu_title": {
+		"message": "在汉典中打开",
+		"description": "open in Zdic"
+	},
+	"enableContentMenu": {
+		"message": "启用右键菜单",
+		"description": "Enable content-menu"
+	},
 	"enableSelect": {
 		"message": "启用选字释义",
 		"description": "Enable select-to-explain"

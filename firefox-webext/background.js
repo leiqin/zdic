@@ -60,12 +60,6 @@ function openZdicTab(word) {
 		}
 };
 
-browser.contextMenus.create({
-	    id: menu_id,
-	    title: chrome.i18n.getMessage('menu_title'),
-	    contexts: ["all"]
-});
-
 browser.contextMenus.onClicked.addListener(function(info, tab) {
 	    if (info.menuItemId !== menu_id) {
 			return;
