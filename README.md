@@ -11,5 +11,4 @@
 
 Firefox 插件更新到 WebExtensions API 版本  
 
-已知Bug：因为 www.zdic.net 还不支持 https 所以，无法在 https 的网页中使用，会有 mixed content 错误
-
+适配汉典网站的改版，汉典已支持 HTTPS

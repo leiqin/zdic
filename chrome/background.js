@@ -54,7 +54,7 @@ function changeContentMenu(enableContentMenu) {
 
 function openZdicTab(word) {
 	    if (word) {
-			chrome.tabs.create({url: "http://www.zdic.net/search/?q=" + encodeURIComponent(word)});
+			chrome.tabs.create({url: "http://www.zdic.net/hans/" + encodeURIComponent(word)});
 		} else {
 			chrome.tabs.create({url: "http://www.zdic.net/"})
 		}

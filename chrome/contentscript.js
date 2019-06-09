@@ -82,8 +82,8 @@ document.addEventListener("keydown", keydown_handler, true);
 
 var zdic_layer_ui;
 var zdic_layer_mouseover = false;
-var zdic_layer_width = 244;
-var zdic_layer_height = 300;
+var zdic_layer_width = 400;
+var zdic_layer_height = 500;
 
 function zdic_layer_over() {
 	//console.log('zdic_layer_over');
@@ -190,7 +190,7 @@ function find_zdic_layer_coordinate(rect) {
 }
 
 function search_url(word) {
-	return "//www.zdic.net/search/?c=3&q=" + encodeURIComponent(word);
+	return "//www.zdic.net/hans/" + encodeURIComponent(word);
 }
 
 if (typeof KeyEvent == "undefined") {
